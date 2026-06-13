@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/YogevBokobza/ProxmoxVED/main/misc/build.func)
+source <(curl -fsSL https://raw.githubusercontent.com/YogevBokobza/YogevBokobza/ProxmoxVED/feature/CFSync/misc/build.func)
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: Yogev Bokobza
-# License: MIT | https://github.com/YogevBokobza/ProxmoxVED/raw/main/LICENSE
+# License: MIT | https://github.com/YogevBokobza/ProxmoxVED/raw/feature/CFSync/LICENSE
 # Source: https://github.com/koen01/CFSync
 
 APP="CFSync"
