@@ -30,14 +30,15 @@ function update_script() {
     exit
   fi
 
-  RELEASE=$(git -C /opt/cfsync ls-remote origin HEAD 2>/dev/null | cut -f1 | head -c8)
+  RELEASE=$(git -C /opt/cfsync ls-remote origin HEAD 2>/dev/null | cut -f1 | cut -c1-7)
   if [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt 2>/dev/null)" ]]; then
     msg_info "Stopping ${APP}"
     systemctl stop cfsync
     msg_ok "Stopped ${APP}"
 
     msg_info "Updating ${APP} to ${RELEASE}"
-    git -C /opt/cfsync pull -q
+    git -C /opt/cfsync fetch --depth=1 -q origin spoolman
+    git -C /opt/cfsync reset --hard FETCH_HEAD -q
     /opt/cfsync/venv/bin/pip install -q --upgrade -r /opt/cfsync/requirements.txt
     echo "${RELEASE}" >/opt/${APP}_version.txt
     msg_ok "Updated ${APP} to ${RELEASE}"
